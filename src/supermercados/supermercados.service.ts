@@ -15,13 +15,23 @@ export class SupermercadosService extends PrismaClient implements OnModuleInit {
 
 
   create(createSupermercadoDto: CreateSupermercadoDto) {
-    
-    return 'This action adds a new supermercado';
+    return this.supermercado.create({
+      data:createSupermercadoDto
+    })
   }
 
   
   findAll() {
-    return `This action returns all supermercados`;
+    return this.supermercado.findMany({
+      include:{
+        ciudad:true
+        // ciudad:{
+        //   select:{
+        //     name:true
+        //   }
+        // }
+      }
+    })
   }
 
   findOne(id: number) {

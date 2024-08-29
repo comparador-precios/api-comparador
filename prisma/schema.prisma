@@ -17,6 +17,33 @@ model Supermercado {
   id          String @id @default(uuid())
   name        String
   description String
+  addres      String
+  phone       String
+
+  ciudad   Ciudad @relation(fields: [idCiudad], references: [id])
+  idCiudad String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Ciudad {
+  id   String @id @default(uuid())
+  name String
+
+  supermercados  Supermercado[]
+  departamento   Departamento   @relation(fields: [idDepartamento], references: [id])
+  idDepartamento String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Departamento {
+  id   String @id @default(uuid())
+  name String
+
+  ciudades Ciudad[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
