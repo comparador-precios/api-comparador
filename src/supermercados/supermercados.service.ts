@@ -24,13 +24,13 @@ export class SupermercadosService extends PrismaClient implements OnModuleInit {
   findAll() {
     return this.supermercado.findMany({
       include:{
-        //ciudad:true
-        ciudad:{
-          select:{
-            name:true,
-            departamento:true
-          }
-        }
+        ciudad:true
+        // ciudad:{
+        //   select:{
+        //     name:true,
+        //     departamento:true
+        //   }
+        // }
       }
     })
   }
