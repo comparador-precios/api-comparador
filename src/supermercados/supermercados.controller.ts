@@ -19,16 +19,16 @@ export class SupermercadosController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.supermercadosService.findOne(+id);
+    return this.supermercadosService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateSupermercadoDto: UpdateSupermercadoDto) {
-    return this.supermercadosService.update(+id, updateSupermercadoDto);
+    return this.supermercadosService.update(id, updateSupermercadoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.supermercadosService.remove(+id);
+    return this.supermercadosService.remove(id);
   }
 }

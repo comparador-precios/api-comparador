@@ -17,7 +17,7 @@ export class SupermercadosService extends PrismaClient implements OnModuleInit {
   create(createSupermercadoDto: CreateSupermercadoDto) {
     return this.supermercado.create({
       data:createSupermercadoDto
-    })
+    }) 
   }
 
   
@@ -25,25 +25,37 @@ export class SupermercadosService extends PrismaClient implements OnModuleInit {
     return this.supermercado.findMany({
       include:{
         ciudad:true
-        // ciudad:{
-        //   select:{
-        //     name:true,
-        //     departamento:true
-        //   }
-        // }
       }
     })
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} supermercado`;
+  findOne(id: string) {
+    return this.supermercado.findUnique({
+      where:{id},
+      include:{
+        ciudad:{
+          include:{
+            departamento:true
+          }
+        }
+      },
+    })
   }
 
-  update(id: number, updateSupermercadoDto: UpdateSupermercadoDto) {
-    return `This action updates a #${id} supermercado`;
+  update(id: string, updateSupermercadoDto: UpdateSupermercadoDto) {
+    return this.supermercado.update({
+      where:{
+        id
+      },
+      data:updateSupermercadoDto
+    })
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} supermercado`;
+  remove(id: string) {
+    return this.supermercado.delete({
+      where:{
+        id
+      }
+    })
   }
 }
